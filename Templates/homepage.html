@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+<style type="text/css">
+	.wrap{
+		overflow-wrap: break-word;
+	}
+	.radius{
+		border-radius: 20px;
+		background-color: whitesmoke;
+		border-width: 10px;
+	  border-style: solid;
+	  border-image: 
+	    linear-gradient(
+	      to bottom, 
+	      #008B8B, 
+	      rgba(0, 0, 0, 0)
+	    ) 1 100%;
+	}
+	.button{
+		background-color:  #008B8B;
+	}
+	.fontify2{
+		font-size: 20px;
+		font-family: 'Courgette', cursive;
+	}
+	.fontify{
+		font-family: 'Acme', sans-serif;
+		font-size: 30px;
+	}
+
+</style>
+
+<br>
+<div class="container">
+	<div class="row text-center radius">
+		<div class="col">
+			<h1>Write-on-Point <i class="fas fa-book-reader"></i></h1>
+			<p>Place to read people's thought and to share few of yours</p>
+		</div>
+	</div>
+	<br>
+
+	<div class="container row bg-danger wrap radius d-flex ">
+		{% for post in posts reversed%}
+		{% if post.published %}
+		<div class='row'>
+			<h3 class='fontify'> <i class="far fa-newspaper"></i> {{post.title}}</h3>
+			{% if post.photo2 %}
+			{% if forloop.counter|divisibleby:2  %}
+			<div class='col-sm-6 text-center d-flex align-items-center'>
+				<br><br>
+				<p class='fontify2'>{{post.blog|slice:":400"}}<strong> .  .  .  .  .</strong></p>
+			</div>
+			<div class='pt-3 col-sm-6 text-center'>
+
+				<img src="{{post.photo2.url}}" alt='problem' height='300px' width='auto'>
+			</div>
+			{% else %}
+			<div class='col-sm-6 text-center'>
+				<img src="{{post.photo2.url}}" alt='problem' height='300px' width='auto'>
+			</div>
+			<div class='col-sm-6 text-center d-flex align-items-center'>
+				<br><br>
+				<p class='fontify2'>{{post.blog|slice:":400"}}<strong> .  .  .  .  .</strong></p>
+			</div>
+
+			{% endif %}
+			{% endif%}
+		
+		
+		<div class=" pt-2 col text-right text-bold">
+			<p>- by {{post.author}}</p>
+		</div>
+		<div class="col text-right">
+			<a class="btn btn-info button" href="{% url 'detailpost' pk=post.pk%}">Read More <i class="fas fa-angle-double-right"></i> </a>
+		</div>
+	</div>
+		<hr>
+		{% endif %}
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

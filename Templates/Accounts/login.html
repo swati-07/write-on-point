@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content%}
+<style type="text/css">
+	.pad{
+		
+		padding: 40px;
+		margin-top:50px;
+		margin-left:30%;
+		width: 45%;
+		/*border-radius: 20px;*/
+		
+		background-color: #ffffff;
+		/*background: rgba(76, 171, 80, 0.8);*/
+		border-width: 10px;
+	  border-style: solid;
+	  border-image: 
+	    linear-gradient(
+	      to bottom, 
+	      #008B8B, 
+	      rgba(0, 0, 0, 0)
+	    ) 1 100%;
+	}
+	.font{
+		font-family: 'Open Sans Condensed', sans-serif;
+	}
+	input{
+		width: 100%;
+		border: none;
+		border-bottom: 2px solid black;
+		padding: 12px;
+		margin-bottom: 20px;
+	}
+	.inherit{
+		color: inherit;
+	}
+</style>
+<div class="container  text-center ">
+	<div class="row">
+		<div class="col text-center pad ">
+			
+			<h1>Log into Write On Point.</h1>
+			<br><br><br>
+			<form method="POST" autocomplete="off">
+	{% csrf_token %}
+	<input type="text" name="username" placeholder="Username"><br><br>
+	<input type="password" name="password" placeholder="Password"><br><br>
+	<input class='' type="submit" name="Login">
+</form>
+<br>
+	<a href="{% url 'register'%}">Don't have an account? Sign In.</a>
+		</div>
+	</div>
+	</div>
+
+{% endblock%}

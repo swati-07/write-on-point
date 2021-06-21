@@ -1,0 +1,71 @@
+
+
+
+{% extends 'base.html'%}
+{% block content%}
+<style type="text/css">
+	.pad{
+		
+		padding: 40px;
+		margin-top:50px;
+		margin-left:0%;
+		width: 100%;
+		border-radius: 20px;
+		color: grey;
+		background-color: whitesmoke;
+	}
+	input[type=text]{
+		width: 80%;
+		border: none;
+		border-bottom: 2px solid black;
+		padding: 12px;
+		margin-bottom: 20px;
+
+	}
+	.inherit{
+		color: inherit;
+	}
+	 textarea {
+        /*resize: vertical;*/
+        resize: inherit;
+        height: 100vh;
+        width: 80%;
+        white-space: pre;
+
+      }
+      input[type=image]{
+      	padding: 40px;
+      }
+      .pd{
+      	padding: 40px;
+      }
+      .fontify{
+      	font-family: 'Abril Fatface', cursive;
+      }
+	
+</style>
+
+<div class="container text-center ">
+	<div class="row">
+		<div class="col-6  pad ">
+			
+			<h1 class='fontify'><i class="far fa-plus-square"></i> Edit Section</h1>
+			<br>
+			<form method="POST" id='myTextArea' class='pd' autocomplete="off" enctype="multipart/form-data">
+	{% csrf_token %}
+	Title : {{form.title}}<br>
+	Caption:{{form.caption}}<br>
+	Blog : {{form.blog}}<br><br>
+	<div>{{form.photo1}}<br></div>
+	{{form.photo2}}<br>
+	<button class="btn btn-primary" name='Update' type="Submit">Submit</button>
+	
+	</form>
+	
+			
+<br>
+	
+		</div>
+	</div>
+	</div>
+{% endblock %}

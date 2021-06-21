@@ -1,0 +1,65 @@
+{% extends 'base.html'%}
+{% block content%}
+{% load static%}
+<style type="text/css">
+	.wrap{
+		overflow-wrap: break-word;
+		hyphens:auto;
+	}
+	.radius{
+		border-radius: 20px;
+		background-color: whitesmoke;
+		border-width: 10px;
+	  border-style: solid;
+	  border-image: 
+	    linear-gradient(
+	      to bottom, 
+	      #008B8B, 
+	      rgba(0, 0, 0, 0)
+	    ) 1 100%;
+	}
+	.button{
+		background-color:  #008B8B;
+	}
+	a{
+		color: inherit;
+	}
+	.fontify{
+		font-family: 'Abril Fatface', cursive;
+	}
+	.fontify2{
+		font-family: 'Acme', sans-serif;
+	}
+</style>
+{% if posts %}
+<div class="container text-center  radius">
+	<h1 class='fontify'>Drafts</h1>
+</div>
+<br>
+
+<div class="container bg-danger wrap radius ">
+	
+		{% for post in posts reversed%}
+		
+		<div class="col-4">
+			<h3 class='fontify2'>{{post.title}}</h3>
+			<p>{{post.blog|slice:":200"}}<strong> .  .  .  .  .</strong></p>
+		</div>
+		
+		<div class="col text-right">
+			<p>- by {{post.author}}</p>
+		</div>
+		<div>
+			<a class='btn btn-info button' href="{% url 'detailpost' pk=post.pk%}">See more</a>
+		</div>
+		<hr>
+		
+
+		{% endfor %}
+	</div>
+	{% else %}
+	<div class='middle text-center'>
+		<img src="{% static 'empty.gif'%}" alt='problem' height="400px" >
+		<h5>No Drafts Available</h5></div>
+		{% endif %}
+{% endblock%}

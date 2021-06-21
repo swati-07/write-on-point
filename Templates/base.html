@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Blog</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+
+	<!-- Latest compiled and minified CSS -->
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	{% load static%}
+<script src="https://kit.fontawesome.com/fdf7995b35.js" crossorigin="anonymous"></script>
+	<style type="text/css">
+		.navbar{
+			font-size: 20px;
+			font-weight: bolder;
+		}
+		body{
+			/*background-image: url("{% static 'back1.jpg' %}");*/
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+		}
+		.paddy{
+			position: absolute;
+			right: 15%;
+			height: 40px;
+			padding-bottom: 200px;
+		}
+	</style>
+</head>
+<body>
+	<div class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header" >
+				<a class="navbar-brand text-bold" href="{% url 'home'%}">write-on-point  <i class="fas fa-feather fa-1x"></i></a>
+			</div>
+			<ul class="nav navbar-nav d-flex paddy justify-content-right">
+				
+				
+				<li><a href="https://github.com/swati-07/"> <i class="fab fa-github fa-1x"></i></a></li>
+				<li><a href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-1x"></i></a></li>
+
+				{% if not request.user.is_authenticated%}
+				<li><a href="{% url 'about'%}">About <i class="fas fa-info fa-1x"></i></a></li>
+				{% endif %}
+
+				{% if request.user.is_authenticated %}
+				<li><a href="{% url 'newpost'%}"><i class="fas fa-plus fa-1x"></i></a></li>
+				<li><a href="{% url 'drafts'%}"><i class="far fa-clock fa-1x"></i></a></li>
+				<li><a href="{% url 'mywork'%}"><i class="fas fa-list fa-1x"></i></a></li>
+
+				<li><a href="{% url 'logout'%}"><i class="fas fa-user-minus fa-1x"></i></a></li>{% endif%}
+
+				{% if not request.user.is_authenticated%}
+
+				<li class='self-align-right'><a href="{% url 'register'%}">Register <i class="fas fa-user-edit fa-1x"></i></a>
+				<li class='self-align-right'><a href="{% url 'login'%}">Log-In <i class="far fa-user fa-1x"></i></a>
+				{% endif %}
+			</ul>
+		</div>
+	</div>
+	{% block content %}
+	{% endblock %}
+	
+		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	
+
+
+</body>
+</html>

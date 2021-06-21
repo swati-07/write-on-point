@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block content %}
+<style type="text/css">
+	.heightpost{
+		height: 70vh;
+		overflow-wrap: break-word;
+		hyphens: auto;
+		padding-bottom: 10px;
+	}
+	#delete2{
+		display: none;
+	}
+	.radius{
+		border-radius: 20px;
+	}
+	.wrapping{
+		 white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word; 
+	}
+	.fontify{
+	font-size: 40px;
+	font-family: 'Pacifico', cursive;	
+	}
+	.fontify2{
+		font-family: 'Abril Fatface', cursive;
+	}
+	.button{
+		background-color:  #008B8B;
+	}
+</style>
+<div class="container  heightpost p-5">
+	<div class="row container  radius">
+		<br>
+		<h1 class="text-center fontify2">{{post.title}}</h1>
+		<hr>
+		<div class="text-right">
+		{% if post.published %}
+		<p class="text-muted">Publish Date:{{post.publishtime}}</p>
+		{% endif%}
+		</div>
+		<br><br>
+		<div class='row'>
+			{% if post.photo1 %}
+			<div class='col-sm-6'>
+				<img src="{{post.photo1.url}}" height='300px' width="auto">
+			</div>
+			<div class='col-sm-6'>
+				<h3 class='fontify'>{{post.caption}}</h3>
+			</div>
+			{% endif %}
+		</div>
+		<div >
+			<p class='wrapping'><i class="fas fa-quote-left fa-4x"></i> {{post.blog}}</p>
+		</div>
+		<br>
+		<div class="text-right text-muted"><h4><i class="fas fa-feather-alt"></i> Author- {{post.author}}</h4></div>
+		{% if post.published%}
+		{% ifequal post.author request.user.username%}
+		<div>
+			<a id="delete" class="btn btn-primary" onclick="HideDelete()" >DELETE</a>
+			<a id="delete2" class='btn btn-primary' href="{{post.deletepost}}">ARE YOU SURE YOU WANT TO DELETE IT PERMANENTLY?</a>
+		</div>
+		{% endifequal%}
+		{% endif %}
+		{% if not post.published%}
+		<a class="btn btn-primary button" href="{% url 'edit' pk=post.pk%}">EDIT</a>
+		
+			
+			<a class="btn btn-primary button" href="{{post.publish}}">POST</a>
+			<br>
+			<br>
+		
+		{% endif%}
+
+
+	</div>
+</div>
+<script type="text/javascript">
+	
+	function HideDelete(){
+		$("#delete").hide();
+		$("#delete2").show();
+	}
+</script>
+{% endblock %}

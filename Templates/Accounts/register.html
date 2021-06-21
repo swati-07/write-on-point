@@ -1,0 +1,75 @@
+{% extends 'base.html'%}
+{% block content %}
+
+<style type="text/css">
+	.pad{
+		
+		padding: 30px;
+		margin-top:15px;
+		margin-left:30%;
+		width: 45%;
+		/*border-radius: 20px;*/
+		
+		background-color: #ffffff;
+		border-width: 10px;
+	  border-style: solid;
+	  border-image: 
+	    linear-gradient(
+	      to bottom, 
+	      #008B8B, 
+	      rgba(0, 0, 0, 0)
+	    ) 1 100%;
+		
+		
+	}
+	.font{
+		font-family: 'Open Sans Condensed', sans-serif;
+	}
+	input{
+		width: 100%;
+		border: none;
+		border-bottom: 2px solid black;
+		padding: 12px;
+		
+	}
+	.inherit{
+		color: inherit;
+	}
+</style>
+
+<div class="container  text-center ">
+	<div class="row">
+		<div class="col text-center pad">
+			
+			<h1>Register Here! </h1>
+			<br>
+			<form method="POST" autocomplete="off">
+	{% csrf_token %}
+	<p>{{form.username.label}}</p>
+	<p>{{form.username}}</p>
+
+
+	<p>{{form.email.label}}</p>
+	<p>{{form.email}}</p>
+
+
+	<p>{{form.password1.label}}</p>
+	<p>{{form.password1}}</p>
+
+
+	<p>{{form.password2.label}}</p>
+	<p>{{form.password2}}</p>
+	<br>
+	<p>{{form.errors}}</p>
+	<input type="Submit" name='CreateUser'>
+</form>
+			
+<br>
+	<a href="{% url 'login'%}">Already have an account? Log In.</a>
+		</div>
+	</div>
+	</div>
+
+
+
+{% endblock%}
