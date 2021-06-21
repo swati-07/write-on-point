@@ -92,7 +92,7 @@ def RegisterView(request):
 			if form.is_valid():
 				form.save()
 				return redirect('login')
-		return render(request,'accounts/register.html',{'form':form})
+		return render(request,'Accounts/register.html',{'form':form})
 
 def LoginView(request):
 	if request.user.is_authenticated:
@@ -105,7 +105,7 @@ def LoginView(request):
 			if user is not None:
 				login(request,user)
 				return redirect('home')
-		return render(request,'accounts/login.html',{})
+		return render(request,'Accounts/login.html',{})
 
 def LogoutView(request):
 	logout(request)
